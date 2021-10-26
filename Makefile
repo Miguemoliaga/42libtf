@@ -4,7 +4,7 @@ CC = gcc
 
 CFLAGS = -Wall -Werror -Wextra -c
 
-CFLAGSR = -Wall -Werror -Wextra -g3 -fsanitize=address
+CFLAGSR = -Wall -Werror -Wextra
 
 FUNCTIONS =	ft_strlen.c \
 			ft_isalpha.c \
@@ -67,13 +67,10 @@ ${NAME}: ${OBJECTS}
 bonus: ${NAME} ${OBJECTS_B}
 	ar rc ${NAME} ${OBJECTS_B}
 
-run:
-	${CC} ${CFLAGSR} *.c -o libft && ./libft
-
 clean: 
-	rm *.o
+	rm ${OBJECTS} ${OBJECTS_B}
 
-fclean: 
+fclean: clean
 	rm -f ${NAME}
 
 re: fclean all
