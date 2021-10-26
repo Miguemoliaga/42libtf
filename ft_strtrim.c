@@ -6,14 +6,14 @@
 /*   By: mmartine <mmartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 19:58:33 by mmartine          #+#    #+#             */
-/*   Updated: 2021/10/20 20:01:12 by mmartine         ###   ########.fr       */
+/*   Updated: 2021/10/26 17:45:27 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-int	trchar(char c, char *set)
+static int	trchar(char c, char *set)
 {
 	int	k;
 
@@ -27,7 +27,7 @@ int	trchar(char c, char *set)
 	return (0);
 }
 
-int	getlast(char *s1, char *set, int strlen)
+static int	getlast(char *s1, char *set, int strlen)
 {
 	int	j;
 
@@ -41,7 +41,7 @@ int	getlast(char *s1, char *set, int strlen)
 	return (j);
 }
 
-int	getfirst(char *s1, char *set, int strlen)
+static int	getfirst(char *s1, char *set, int strlen)
 {
 	int	i;
 

@@ -6,14 +6,29 @@
 /*   By: mmartine <mmartine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 19:57:55 by mmartine          #+#    #+#             */
-/*   Updated: 2021/10/20 20:07:06 by mmartine         ###   ########.fr       */
+/*   Updated: 2021/10/26 17:43:03 by mmartine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-int	wordsnum(char *s, char c)
+static void	ft_free(char **m, int r)
+{
+	int	i;
+
+	i = 0;
+	while (i < r)
+	{
+		free(m[i]);
+		m[i] = NULL;
+		i++;
+	}
+	free(m);
+	m = NULL;
+}
+
+static int	wordsnum(char *s, char c)
 {
 	size_t	i;
 	int		words;
@@ -36,14 +51,14 @@ int	wordsnum(char *s, char c)
 	return (words);
 }
 
-char	**malmatrix(int words, char *s, char c)
+static char	**malmatrix(int words, char *s, char c)
 {
 	int		i;
 	int		len;
 	int		j;
 	char	**matrix;
 
-	matrix = (char **) malloc((words + 1) * sizeof(char *));
+	matrix = (char **)malloc((words + 1) * sizeof(char *));
 	if (!matrix)
 		return (NULL);
 	matrix[words] = NULL;
@@ -65,7 +80,7 @@ char	**malmatrix(int words, char *s, char c)
 	return (matrix);
 }
 
-char	**stom(char *s, char c, char **m)
+static char	**stom(char *s, char c, char **m)
 {
 	int	i;
 	int	j;
@@ -102,7 +117,10 @@ char	**ft_split(char const *s, char c)
 	rows = wordsnum((char *)s, c);
 	matrix = malmatrix(rows, (char *)s, c);
 	if (!matrix)
+	{
+		ft_free(matrix, rows);
 		return (NULL);
+	}
 	matrix = stom((char *)s, c, matrix);
 	return (matrix);
 }
