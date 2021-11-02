@@ -68,7 +68,8 @@ bonus: ${NAME} ${OBJECTS_B}
 	ar rc ${NAME} ${OBJECTS_B}
 
 clean: 
-	rm ${OBJECTS} ${OBJECTS_B}
+	rm -f ${OBJECTS_B}
+	rm -f ${OBJECTS} 2> /dev/null
 
 fclean: clean
 	rm -f ${NAME}
